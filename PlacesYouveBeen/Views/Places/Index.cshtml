@@ -1,0 +1,24 @@
+@using PlacesYouveBeen.Models;
+<!---- using statement to the top of the file that imports the Item class -->
+<h1>Places!</h1>
+<ul>
+@if (Model.Count == 0)
+{
+    <p>you have been nowhere</p>
+}
+@if (Model.Count != 0)
+{
+    @foreach (Place myPlace in Model) // Runs through each place nicknamed place in the Model. we can call it from the models because we inserted the data through the view
+    {
+        <li>
+            @myPlace.GetCityName()
+        </li>
+    }
+}
+</ul>
+
+<a href="/places/new">Add another place</a>
+
+<form action="/places/delete" method="post">  <!-- action: this tells the form which route to submit form info to. This attribute name must match the URL path of a route in the controller. (We'll create one shortly.) -->
+  <button type="submit" name="button">Clear All Items</button>
+</form>
